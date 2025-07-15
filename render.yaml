@@ -2,18 +2,12 @@ services:
   - type: web
     name: resume-screener-ai
     env: docker
-    plan: free  # change to starter/standard if needed
-    branch: main  # or whichever branch you use
     repo: https://github.com/110-0011/resume-screener-ai
-    buildCommand: ""  # Dockerfile handles it
-    startCommand: ""  # CMD in Dockerfile handles this
-    envVars:
-      - key: GEMINI_API_KEY
-        fromSecret: GEMINI_API_KEY  # define this secret in Render dashboard
+    branch: main  # adjust if you're using another branch
+    plan: free    # or standard/starter
     autoDeploy: true
-    pullRequestPreviews: true
-    instanceCount: 1
-    # Optional health check:
-    healthCheckPath: /health  # adjust if you have a health endpoint
-    healthCheckInterval: 10
-    healthCheckTimeout: 5
+    envVars:
+      - key: QDRANT_URL
+        fromSecret: QDRANT_URL
+      - key: QDRANT_API_KEY
+        fromSecret: QDRANT_API_KEY
